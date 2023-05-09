@@ -15,14 +15,7 @@ helm install mysql-exporter prometheus-community/prometheus-mysql-exporter
 
 
 
-
 kubectl apply -f .
-
-
-
-
-
-
 
 
 kubectl port-forward deployment/prometheus-grafana 3000

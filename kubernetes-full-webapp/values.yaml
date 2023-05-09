@@ -9,15 +9,6 @@ serviceMonitor:
 
 
 
-
-
-
-
 drupalUsername: drupal
 drupalPassword: drupal
 drupalEmail: administration@tech.market
-
-persistence:
-    storageClass: "persistant"
-#auth:
-#    rootPassword: secret-root-pwd
