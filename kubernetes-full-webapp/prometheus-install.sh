@@ -11,15 +11,13 @@ helm install prometheus prometheus-community/kube-prometheus-stack
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
-helm install prometheus prometheus-community/prometheus-mysql-exporter
+helm install mysql-exporter prometheus-community/prometheus-mysql-exporter
 
 
 
 
-kubectl apply -f mysql-secret.yaml
-kubectl apply -f mysql-configmap.yaml
-kubectl apply -f phpmyadmin.yaml
-kubectl apply -f mysql.yaml
+kubectl apply -f .
+
 
 
 
