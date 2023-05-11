@@ -9,6 +9,6 @@ serviceMonitor:
 
 
 
-drupalUsername: drupal
-drupalPassword: drupal
-drupalEmail: administration@tech.market
+##drupalUsername: drupal
+##drupalPassword: drupal
+##drupalEmail: administration@tech.market

@@ -20,7 +20,7 @@ kubectl apply -f .
 
 kubectl port-forward deployment/prometheus-grafana 3000
 
-kubectl port-forward service/mongodb-exporter-prometheus-mongodb-exporter 9216
+kubectl port-forward service/mysql-exporter-prometheus-mysql-exporter 9104
 
 
 minikube service phpmyadmin-service

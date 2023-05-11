@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: mysql
   labels:
     app: mysql
 spec:
@@ -20,21 +20,21 @@ spec:
         ports:
         - containerPort: 3306
         env:
-        - name: MYSQL_USER
+        - name: MYSQL_DATABASE
           valueFrom:
             secretKeyRef:
               name: mysql-secret
-              key: mysql-username
+              key: mysql-database
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-root-password
-          volumeMounts:
-            -
-              mountPath: /var/lib/mysql
-              name: vol-drupal
-              subPath: dbdata
+        volumeMounts:
+          -
+            mountPath: /var/lib/mysql
+            name: vol-drupal
+            subPath: dbdata
       volumes:
         -
           name: vol-drupal
