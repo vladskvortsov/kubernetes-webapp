@@ -39,7 +39,7 @@ spec:
             name: vol-drupal
       containers:
         -
-          image: bitnami/drupal:10.0.9-debian-11-r2
+          image: drupal:latest
           name: drupal
           ports:
             -
