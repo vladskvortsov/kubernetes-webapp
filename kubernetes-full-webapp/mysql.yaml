@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-deployment
   labels:
     app: mysql
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mysql
@@ -16,30 +16,18 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:8.0
+        image: mysql
         ports:
         - containerPort: 3306
         env:
         - name: MYSQL_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-database
-        - name: MYSQL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-username
+          value: drupal   
+        - name: MYSQL_USER
+          value: drupal
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-password
+          value: drupal
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-root-password
+          value: drupal
 
         volumeMounts:
           -
@@ -51,6 +39,7 @@ spec:
           name: vol-drupal
           persistentVolumeClaim:
             claimName: drupal-pvc-mysql
+
 
 
 ---

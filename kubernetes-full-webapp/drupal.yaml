@@ -17,9 +17,9 @@ kind: Deployment
 metadata:
   labels:
     app: drupal
-  name: drupal
+  name: drupal-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: drupal
@@ -28,37 +28,23 @@ spec:
       labels:
         app: drupal
     spec:
-      initContainers:
-        -
-          name: init-sites-volume
-          image: drupal:latest
-          command: ['/bin/bash', '-c']
-          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
-          volumeMounts:
-          - mountPath: /drupal
-            name: vol-drupal
       containers:
-        -
-          image: drupal:latest
+        - image: drupal:latest
           name: drupal
           ports:
-            -
-              containerPort: 80
+            - containerPort: 30080
+              name: drupal
           volumeMounts:
-          - mountPath: /var/www/html/modules
-            name: vol-drupal
-            subPath: modules
-          - mountPath: /var/www/html/profiles
-            name: vol-drupal
-            subPath: profiles
-          - mountPath: /var/www/html/sites
-            name: vol-drupal
-            subPath: sites
-          - mountPath: /var/www/html/themes
-            name: vol-drupal
-            subPath: themes
+            - name: drupal
+              mountPath: /var/www/html/modules
+              subPath: modules
+            - name: drupal
+              mountPath: /var/www/html/profiles
+              subPath: profiles
+            - name: drupal
+              mountPath: /var/www/html/themes
+              subPath: themes
       volumes:
-        -
-          name: vol-drupal
+        - name: drupal
           persistentVolumeClaim:
-            claimName: drupal-pvc
+            claimName: drupal-claim
