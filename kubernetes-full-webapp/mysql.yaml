@@ -42,15 +42,28 @@ spec:
         image: mysql
         ports:
         - containerPort: 3306
-        env:
-        - name: MYSQL_DATABASE
-          value: drupal   
+        env: 
         - name: MYSQL_USER
-          value: drupal
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-username
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-database
         - name: MYSQL_PASSWORD
-          value: drupal
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
         - name: MYSQL_ROOT_PASSWORD
-          value: drupal
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-root-password
+
 
         volumeMounts:
           -
